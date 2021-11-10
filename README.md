@@ -53,11 +53,11 @@ git log -L :globalPluginDirs:plugins.go
 
 Кто автор функции synchronizedWriters?
 
-не находит такой текст в файлах или комментариях
+commit 5ac311e2a91e381e2f52234668b49ba670aa0fe5
+Author: Martin Atkins <mart@degeneration.co.uk>
+Date:   Wed May 3 16:25:41 2017 -0700
 
-git grep --heading -n 'synchronizedWriters'
-git grep --heading -n 'synchronized*'
- git log --pretty=oneline | grep 'synchronized*'
+git log -S"func synchronizedWriters("
 
 
 
