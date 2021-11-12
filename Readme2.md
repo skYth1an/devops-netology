@@ -38,7 +38,8 @@ bash is /bin/bash
 
 mkdir /tmp/new_path_directory
 cp /bin/bash /tmp/new_path_directory/
-export PATH=$PATH:/tmp/new_path_directory/
+export PATH=/tmp/new_path_directory/
+export PATH=$PATH:/bin/
 
 
 Чем отличается планирование команд с помощью batch и at?
