@@ -10,16 +10,8 @@
 процесс init    
 
 vagrant@vagrant:~$ hostnamectl
-   Static hostname: vagrant
-         Icon name: computer-vm
-           Chassis: vm
-        Machine ID: e5a184443c724a929294cb6bd41e515a
-           Boot ID: f80e0f83c4594fb59cafd11a3cf2833f
-    Virtualization: oracle
   Operating System: Ubuntu 20.04.2 LTS
-            Kernel: Linux 5.4.0-80-generic
-      Architecture: x86-64
-vagrant@vagrant:~$ ps -aux
+
 USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
 root           1  0.2  1.1 167200 11448 ?        Ss   16:17   0:02 /sbin/init
 
