@@ -12,6 +12,7 @@
 vagrant@vagrant:~$ hostnamectl
   Operating System: Ubuntu 20.04.2 LTS
 
+vagrant@vagrant:~$ ps -aux
 USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
 root           1  0.2  1.1 167200 11448 ?        Ss   16:17   0:02 /sbin/init
 
