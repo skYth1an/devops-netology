@@ -72,25 +72,8 @@ vagrant@vagrant:~$ ulimit -n
 root@DESKTOP-0DDKF9V:~# unshare -f --pid --mount-proc sleep 1h
 
 root@DESKTOP-0DDKF9V:~# ps aux
-USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
-root         1  0.0  0.0   8944   328 ?        Ssl  19:13   0:00 /init
-root         8  0.0  0.0   8944   224 tty1     Ss   19:13   0:00 /init
-igor         9  0.0  0.0  18212  3876 tty1     S    19:13   0:00 -bash
-root       994  0.0  0.0   8944   224 tty2     Ss   19:34   0:00 /init
-igor       995  0.0  0.0  18212  3864 tty2     S    19:34   0:00 -bash
-igor      1030  0.2  0.0  20624  3860 tty1     S    19:44   0:08 /usr/bin/ssh vagrant@127.0.0.1 -p 2222 -o LogLevel=FATA
-root      1048  0.0  0.0  19236  2908 tty2     S    20:22   0:00 sudo -i
-root      1049  0.0  0.0  18080  3644 tty2     S    20:22   0:00 -bash
-root      1125  0.0  0.0   8944   224 tty3     Ss   20:22   0:00 /init
-igor      1126  0.0  0.0  18080  3628 tty3     S    20:22   0:00 -bash
-root      1139  0.0  0.0  19236  2904 tty3     S    20:22   0:00 sudo -i
-root      1140  0.0  0.0  18080  3628 tty3     S    20:22   0:00 -bash
-root      1162  0.0  0.0  16620  1368 tty3     S    20:33   0:00 screen
-root      1163  0.0  0.0  16924  1464 ?        Ss   20:33   0:00 SCREEN
-root      1164  0.0  0.0  17140  2596 pts/0    Ss   20:33   0:00 /bin/bash
-root      1172  0.0  0.0  15280   812 pts/0    S    20:34   0:00 unshare -f --pid --mount-proc sleep 1h
 root      1173  0.0  0.0  15276   816 pts/0    S    20:34   0:00 sleep 1h
-root      1174  0.0  0.0  18664  1888 tty2     R    20:35   0:00 ps aux
+
 root@DESKTOP-0DDKF9V:~# nsenter --target 1173 --pid --mount
 root@DESKTOP-0DDKF9V:/# ps aux
 USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
