@@ -13,12 +13,14 @@ After=network-online.target
 User=node_exporter
 Group=node_exporter
 Type=simple
-ExecStart=/usr/local/bin/node_exporter
+ExecStart=-/usr/local/bin/node_exporter
+EnvironmentFile=/etc/sysconfig/node_exporter
 
 [Install]
 WantedBy=multi-user.target
 
-для добавления зависимого файла,нужно добавить параметр - EnvironmentFile
+можно использовать файл для передачи параметров, например EnvironmentFile=/etc/sysconfig/node_exporter
+при этом можно перед файлом или самой командой поставать специальный префикс, например - , в случае появления не нулевого кода выхода программы записывает это, но не отмечает как сбой
 
 Nov 22 17:12:58 vagrant sudo[12735]:  vagrant : TTY=pts/0 ; PWD=/etc/systemd/system ; USER=root ; COMMAND=/usr/bin/systemctl enable node_exporter
 Nov 22 17:15:39 vagrant sudo[12778]:  vagrant : TTY=pts/0 ; PWD=/etc/systemd/system ; USER=root ; COMMAND=/usr/bin/systemctl stop node_exporter
