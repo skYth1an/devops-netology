@@ -149,9 +149,16 @@ root@vagrant:~# echo $?
 
 1. Используя pvmove, переместите содержимое PV с RAID0 на RAID1.
 
+pvmove /dev/md127 /dev/md126
+
 1. Сделайте `--fail` на устройство в вашем RAID1 md.
 
+mdadm --fail /dev/md126
+
 1. Подтвердите выводом `dmesg`, что RAID1 работает в деградированном состоянии.
+[ 2369.409621] md/raid1:md126: Disk failure on sdb1, disabling device.
+               md/raid1:md126: Operation continuing on 1 devices.
+
 
 1. Протестируйте целостность файла, несмотря на "сбойный" диск он должен продолжать быть доступен:
 
@@ -160,9 +167,13 @@ root@vagrant:~# echo $?
     root@vagrant:~# echo $?
     0
     ```
+   root@vagrant:/tmp/new# gzip -t /tmp/new/test.gz
+root@vagrant:/tmp/new# echo $?
+0
 
 1. Погасите тестовый хост, `vagrant destroy`.
 
+готово
  
  ---
 
