@@ -63,6 +63,7 @@ dummy0: <BROADCAST,NOARP,UP,LOWER_UP> mtu 1500 qdisc noqueue state UNKNOWN group
        valid_lft forever preferred_lft forever
 
 vagrant@vagrant:~$ sudo ip route add 5.255.255.55/32 dev dummy0
+
 vagrant@vagrant:~$ sudo ip route add 8.8.8.8 dev dummy0
 
 vagrant@vagrant:~$ ip route
