@@ -57,68 +57,116 @@ done
 необходимо изменить условие,добавить скобку,добавить прерывание выполнения в случае 
 
 while (( 1==1 ))
-	do
-	curl https://localhost:4757
-	if (($? != 0))
-	then
-	date >> curl.log
-	else
-	break
-	fi
-	done
+
+do
+
+curl https://localhost:4757
+
+if (($? != 0))
+
+then
+
+date >> curl.log
+
+else
+
+break
+
+fi
+
+done
 
 
 1. Необходимо написать скрипт, который проверяет доступность трёх IP: 192.168.0.1, 173.194.222.113, 87.250.250.242 по 80 порту и записывает результат в файл log. Проверять доступность необходимо пять раз для каждого узла.
 
 #!/usr/bin/env bash
+
 i=5
+
 while (( $i > 0 ))
-	do
-	curl 192.168.0.1:80
-	echo 'state='$? '192.168.0.1' >> curll.log
-	curl 173.194.222.113:80
-	echo 'state='$? '173.194.222.113' >> curll.log
-	curl 87.250.250.242:80
-	echo 'state='$? '87.250.250.242' >> curll.log
-	echo $i
-	i=$[ $i - 1 ]
-	done
+
+do
+
+curl 192.168.0.1:80
+
+echo 'state='$? '192.168.0.1' >> curll.log
+
+curl 173.194.222.113:80
+
+echo 'state='$? '173.194.222.113' >> curll.log
+
+curl 87.250.250.242:80
+
+echo 'state='$? '87.250.250.242' >> curll.log
+
+echo $i
+
+i=$[ $i - 1 ]
+
+done
 
 
 1. Необходимо дописать скрипт из предыдущего задания так, чтобы он выполнялся до тех пор, пока один из узлов не окажется недоступным. Если любой из узлов недоступен - IP этого узла пишется в файл error, скрипт прерывается
 
- #!/usr/bin/env bash
+#!/usr/bin/env bash
+
 i=5
+
 while (( $i > 0 ))
-	do
-	curl -s --connect-timeout 1 192.168.0.1:80
-	if (( $?==0 ))
-	then
-	echo 'state='$? '173.194.222.113' >> curll.log
-	else
-	echo 'state='$? '192.168.0.1' >> error.log
-	break
-	fi
-	curl -s --connect-timeout 1 173.194.222.113:80
-	if (( $?==0 ))
-	then
-	echo 'state='$? '173.194.222.113' >> curll.log
-	else
-	echo 'state='$? '173.194.222.113' >> error.log
-	break
-	fi
-	curl -s --connect-timeout 1 87.250.250.242:80
-	if (( $?==0 ))
-	then
-	echo 'state='$? '87.250.250.242' >> curll.log
-	else
-	echo 'state='$? '87.250.250.242' >> error.log
-	break
-	fi
-	i=$[ $i - 1 ]
-	done~~~~~~~~
 
+do
 
+curl -s --connect-timeout 1 192.168.0.1:80
+
+if (( $?==0 ))
+
+then
+
+echo 'state='$? '173.194.222.113' >> curll.log
+
+else
+
+echo 'state='$? '192.168.0.1' >> error.log
+
+break
+
+fi
+
+curl -s --connect-timeout 1 173.194.222.113:80
+
+if (( $?==0 ))
+
+then
+
+echo 'state='$? '173.194.222.113' >> curll.log
+
+else
+
+echo 'state='$? '173.194.222.113' >> error.log
+
+break
+
+fi
+
+curl -s --connect-timeout 1 87.250.250.242:80
+
+if (( $?==0 ))
+
+then
+
+echo 'state='$? '87.250.250.242' >> curll.log
+
+else
+
+echo 'state='$? '87.250.250.242' >> error.log
+
+break
+
+fi
+
+i=$[ $i - 1 ]
+
+done
 
 ## Дополнительное задание (со звездочкой*) - необязательно к выполнению
 
