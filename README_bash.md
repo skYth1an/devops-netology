@@ -37,7 +37,7 @@ do
 	curl https://localhost:4757
 	if (($? != 0))
 	then
-		date >> curl.log
+		date > curl.log
 	else
 	break
 	fi
@@ -51,15 +51,14 @@ done
 i=5  
 while (( $i > 0 ))  
 do  
-curl 192.168.0.1:80  
-echo 'state='$? '192.168.0.1' >> curll.log  
-curl 173.194.222.113:80  
-echo 'state='$? '173.194.222.113' >> curll.log  
-curl 87.250.250.242:80  
-echo 'state='$? '87.250.250.242' >> curll.log  
-echo $i  
-i=$[ $i - 1 ]  
-done  
+list=(192.168.0.1 173.194.222.113 87.250.250.242)
+for x in ${list[@]}
+do
+curl -s --connect-timeout 1 $x 
+echo $x >> curl.log
+done
+i=$[ $i - 1 ]
+done
 ```
 
 ## Обязательная задача 3
@@ -67,37 +66,22 @@ done
 
 ### Ваш скрипт:
 ```bash
-i=5  
-while (( $i > 0 ))  
+list=(192.168.0.1 173.194.222.113 87.250.250.242)  
+res=0  
+while (($res==0))  
 do  
-curl -s --connect-timeout 1 192.168.0.1:80  
-if (( $?==0 ))  
-then  
-echo 'state='$? '173.194.222.113' >> curll.log  
-else  
-echo 'state='$? '192.168.0.1' >> error.log  
-break  
-fi  
-curl -s --connect-timeout 1 173.194.222.113:80  
-if (( $?==0 ))  
-then  
-echo 'state='$? '173.194.222.113' >> curll.log  
-else  
-echo 'state='$? '173.194.222.113' >> error.log  
-break  
-fi  
-curl -s --connect-timeout 1 87.250.250.242:80  
-if (( $?==0 ))  
-then  
-echo 'state='$? '87.250.250.242' >> curll.log  
-else  
-echo 'state='$? '87.250.250.242' >> error.log  
-break  
-fi  
-i=$[ $i - 1 ]  
+	for x in ${list[@]}  
+	do  
+		curl -Is --connect-timeout 2 $x:80  
+		res=$?  
+		if (( $res !=0 ))   
+		then  
+		echo $x > error.log  
+		break  
+		fi  
+	done  
 done  
 ```
-
 ## Дополнительное задание (со звездочкой*) - необязательно к выполнению
 
 Мы хотим, чтобы у нас были красивые сообщения для коммитов в репозиторий. Для этого нужно написать локальный хук для git, который будет проверять, что сообщение в коммите содержит код текущего задания в квадратных скобках и количество символов в сообщении не превышает 30. Пример сообщения: \[04-script-01-bash\] сломал хук.
