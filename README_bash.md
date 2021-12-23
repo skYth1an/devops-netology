@@ -72,7 +72,7 @@ while (($res==0))
 do  
 	for x in ${list[@]}  
 	do  
-		curl -Is --connect-timeout 2 $x:80  
+		curl -s --connect-timeout 2 $x:80  
 		res=$?  
 		if (( $res !=0 ))   
 		then  
