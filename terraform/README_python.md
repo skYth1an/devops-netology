@@ -97,17 +97,19 @@ mlist={}
 
 for x in checklist:
         check = socket.gethostbyname(x)
-        glist=check
+        glist[x]=check
+        print(glist)
 
-#while True:
-for y in checklist:
-        check2 = socket.gethostbyname(y)
-        mlist=check2
+while True:
+        for y in checklist:
+          check2 = socket.gethostbyname(y)
+          mlist[y]=check2
         for z,n in glist.items():
                 for q,w in mlist.items():
                         if z==q and n==w:
                                 print(y+' - '+n)
-
+                        else:
+                                 print('[ERROR] ' + 'IP mismatch: ' + x + ' ' + check + ' ' + n)
 ```
 
 ### Вывод скрипта при запуске при тестировании:
