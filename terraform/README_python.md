@@ -98,23 +98,28 @@ mlist={}
 for x in checklist:
         check = socket.gethostbyname(x)
         glist[x]=check
-        print(glist)
-
+        sort_glist = sorted(glist.items())
+        print(sort_glist)
 while True:
-        for y in checklist:
+    for y in checklist:
           check2 = socket.gethostbyname(y)
           mlist[y]=check2
-        for z,n in glist.items():
-                for q,w in mlist.items():
-                        if z==q and n==w:
-                                print(y+' - '+n)
-                        else:
-                                 print('[ERROR] ' + 'IP mismatch: ' + x + ' ' + check + ' ' + n)
+          sort_mlist = sorted(mlist.items())
+          print(sort_mlist)
+          for z,n in glist.items():
+                 for q,w in mlist.items():
+
+                    if z==q and n==w:
+                          print(z+' - '+n)
+                    else:
+                        print('[ERROR] ' + 'IP mismatch: ' + z + ' ' + n + ' ' + w)
 ```
 
 ### Вывод скрипта при запуске при тестировании:
 ```
-???
+drive.google.com - 74.125.131.194
+[ERROR] IP mismatch: mail.google.com 173.194.73.19 74.125.131.194
+[ERROR] IP mismatch: google.com 173.194.220.101 74.125.131.194
 ```
 
 ## Дополнительное задание (со звездочкой*) - необязательно к выполнению
