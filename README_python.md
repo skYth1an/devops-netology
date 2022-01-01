@@ -50,14 +50,14 @@ result_os = os.popen(' && '.join(bash_command)).read()
 for result in result_os.split('\n'):
     if result.find('modified') != -1:
         prepare_result = result.replace('\tmodified:   ', '')
-        print(prepare_result)
+        print(os.getcwd() + '\\' + prepare_result)
 ```
 
 ### Вывод скрипта при запуске при тестировании:
 ```
-.idea/workspace.xml
-pyt.py
-terraform/README_python.md
+C:\Users\ilebe\PycharmProjects\pythonProject6\.idea/workspace.xml
+C:\Users\ilebe\PycharmProjects\pythonProject6\pyt.py
+C:\Users\ilebe\PycharmProjects\pythonProject6\terraform/README_python.md
 ```
 
 ## Обязательная задача 3
@@ -73,15 +73,15 @@ result_os = os.popen(' && '.join(bash_command)).read()
 for result in result_os.split('\n'):
     if result.find('modified') != -1:
         prepare_result = result.replace('\tmodified:   ', '')
-        print(prepare_result)
+        print(os.getcwd() + '\\' + prepare_result)
 ```
 
 ### Вывод скрипта при запуске при тестировании:
 ```
 Введите абсолютный путь к директории Git: C:/Users/ilebe/OneDrive/Рабочий стол/Git-Repo/github
-.idea/workspace.xml
-pyt.py
-terraform/README_python.md
+C:\Users\ilebe\PycharmProjects\pythonProject6\.idea/workspace.xml
+C:\Users\ilebe\PycharmProjects\pythonProject6\pyt.py
+C:\Users\ilebe\PycharmProjects\pythonProject6\terraform/README_python.md
 ```
 
 ## Обязательная задача 4
@@ -91,23 +91,23 @@ terraform/README_python.md
 ```python
 import socket
 
-checklist = ['drive.google.com','mail.google.com','google.com']
-glist={}
-mlist={}
+hostlist = ['drive.google.com','mail.google.com','google.com']
+first_check={}
+second_check={}
 
-for x in checklist:
-        check = socket.gethostbyname(x)
-        glist[x]=check
-        sort_glist = sorted(glist.items())
-        print(sort_glist)
+for host in hostlist:
+        check = socket.gethostbyname(host)
+        first_check[host]=check
+        sort_first_check = sorted(first_check.items())
+        print(sort_first_check)
 while True:
-    for y in checklist:
-          check2 = socket.gethostbyname(y)
-          mlist[y]=check2
-          sort_mlist = sorted(mlist.items())
-          print(sort_mlist)
-          for z,n in glist.items():
-                 for q,w in mlist.items():
+    for host in hostlist:
+          check2 = socket.gethostbyname(host)
+          second_check[host]=check2
+          sort_second_check = sorted(second_check.items())
+          print(sort_second_check)
+          for z,n in first_check.items():
+                 for q,w in second_check.items():
 
                     if z==q and n==w:
                           print(z+' - '+n)
@@ -118,8 +118,8 @@ while True:
 ### Вывод скрипта при запуске при тестировании:
 ```
 drive.google.com - 74.125.131.194
-[ERROR] IP mismatch: mail.google.com 173.194.73.19 74.125.131.194
-[ERROR] IP mismatch: google.com 173.194.220.101 74.125.131.194
+[ERROR] IP mismatch: drive.google.com 74.125.131.194 74.125.131.17
+[ERROR] IP mismatch: mail.google.com 74.125.131.17 74.125.131.194
 ```
 
 ## Дополнительное задание (со звездочкой*) - необязательно к выполнению
