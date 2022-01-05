@@ -91,35 +91,28 @@ C:\Users\ilebe\PycharmProjects\pythonProject6\terraform/README_python.md
 ```python
 import socket
 
-hostlist = ['drive.google.com','mail.google.com','google.com']
-first_check={}
-second_check={}
+host_list = ['drive.google.com','mail.google.com','google.com']
+dict_hosts={}
 
-for host in hostlist:
-        check = socket.gethostbyname(host)
-        first_check[host]=check
-        sort_first_check = sorted(first_check.items())
-        print(sort_first_check)
+for host in host_list:
+        dict_hosts[host]=socket.gethostbyname(host)
+
+
 while True:
-    for host in hostlist:
-          check2 = socket.gethostbyname(host)
-          second_check[host]=check2
-          sort_second_check = sorted(second_check.items())
-          print(sort_second_check)
-          for z,n in first_check.items():
-                 for q,w in second_check.items():
+    for new_host in host_list:
+        new_ip=socket.gethostbyname(new_host)
+        if new_ip==dict_hosts[new_host]:
+            print(new_host + ' - ' + new_ip)
+        else:
+            print('[ERROR] ' + 'IP mismatch: ' + new_host + ' ' + dict_hosts[new_host] + ' ' + new_ip)
 
-                    if z==q and n==w:
-                          print(z+' - '+n)
-                    else:
-                        print('[ERROR] ' + 'IP mismatch: ' + z + ' ' + n + ' ' + w)
 ```
 
 ### Вывод скрипта при запуске при тестировании:
 ```
+mail.google.com - 216.58.210.165
+google.com - 216.58.209.174
 drive.google.com - 74.125.131.194
-[ERROR] IP mismatch: drive.google.com 74.125.131.194 74.125.131.17
-[ERROR] IP mismatch: mail.google.com 74.125.131.17 74.125.131.194
 ```
 
 ## Дополнительное задание (со звездочкой*) - необязательно к выполнению
