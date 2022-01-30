@@ -42,7 +42,30 @@ Push на мой взгляд более надежен чем pull, потом�
 
 - VirtualBox
 - Vagrant
-- Ansible
+- Ansible  
+
+```console
+skyth1an@swan:~/Загрузки$ vboxmanage --version
+6.1.26_Ubuntur145957
+```  
+
+```console
+skyth1an@swan:~/Загрузки$ ansible --version
+ansible [core 2.12.1]
+  config file = /etc/ansible/ansible.cfg
+  configured module search path = ['/home/skyth1an/.ansible/plugins/modules', '/usr/share/ansible/plugins/modules']
+  ansible python module location = /usr/lib/python3/dist-packages/ansible
+  ansible collection location = /home/skyth1an/.ansible/collections:/usr/share/ansible/collections
+  executable location = /usr/bin/ansible
+  python version = 3.8.10 (default, Jun  2 2021, 10:49:15) [GCC 9.4.0]
+  jinja version = 2.10.1
+  libyaml = True
+``` 
+```console
+skyth1an@swan:~/Загрузки$ vagrant --version
+Vagrant 2.2.19
+
+``` 
 
 *Приложить вывод команд установленных версий каждой из программ, оформленный в markdown.*
 
@@ -54,4 +77,9 @@ Push на мой взгляд более надежен чем pull, потом�
 - Зайти внутрь ВМ, убедиться, что Docker установлен с помощью команды
 ```
 docker ps
+```
+
+```command  
+vagrant@server1:~$ docker ps
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
 ```
