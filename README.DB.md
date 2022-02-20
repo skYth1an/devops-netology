@@ -24,7 +24,7 @@ services:
       POSTGRES_PASSWORD: "postgres"
       PGDATA: "/var/lib/postgresql/data/pgdata"
     volumes:
-      - /opt/db/backup:/var/lib/postgresql/backup
+      - /opt/db/backup:/var/lib/postgresql/data/backup
       - /opt/db/pgdata:/var/lib/postgresql/data/pgdata
     ports:
       - "5432:5432"
@@ -268,6 +268,14 @@ Seq Scan on clients c  (cost=0.00..14.60 rows=458 width=146)
 Приведите список операций, который вы применяли для бэкапа данных и восстановления. 
 
 ---
+
+```
+sudo docker exec -t 8ca77446794a pg_dump -U postgres mydb -f /var/lib/postgresql/data/backup/mydump.sql
+
+sudo docker exec -i 892e9a5a4ed3 psql -U postgres -d mydb -f /var/lib/postgresql/data/backup/mydump.sql
+```
+
+
 
 ### Как cдавать задание
 
