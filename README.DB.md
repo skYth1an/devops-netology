@@ -91,7 +91,7 @@ Referenced by:
     TABLE "clients" CONSTRAINT "clients_orders_fkey" FOREIGN KEY (orders) REFERENCES orders(id)
   
   
-  test_db=# \d clients
+test_db=# \d clients
                                     Table "public.clients"
   Column  |         Type          | Collation | Nullable |               Default               
 ----------+-----------------------+-----------+----------+-------------------------------------
@@ -102,13 +102,44 @@ Referenced by:
  orders   | integer               |           |          | 
 Indexes:
     "clients_pkey" PRIMARY KEY, btree (id)
+    "country_idx" btree (country)
 Foreign-key constraints:
     "clients_orders_fkey" FOREIGN KEY (orders) REFERENCES orders(id)
 
 
+
 ```
 
 ```
+SELECT * FROM information_schema.table_privileges where grantee  in ('test-simple-user','test-admin-user');
+```
+
+```
+grantor	grantee	table_catalog	table_schema	table_name	privilege_type	is_grantable	with_hierarchy
+postgres	test-admin-user	test_db	public	clients	INSERT	NO	NO
+postgres	test-admin-user	test_db	public	clients	SELECT	NO	YES
+postgres	test-admin-user	test_db	public	clients	UPDATE	NO	NO
+postgres	test-admin-user	test_db	public	clients	DELETE	NO	NO
+postgres	test-admin-user	test_db	public	clients	TRUNCATE	NO	NO
+postgres	test-admin-user	test_db	public	clients	REFERENCES	NO	NO
+postgres	test-admin-user	test_db	public	clients	TRIGGER	NO	NO
+postgres	test-simple-user	test_db	public	clients	INSERT	NO	NO
+postgres	test-simple-user	test_db	public	clients	SELECT	NO	YES
+postgres	test-simple-user	test_db	public	clients	UPDATE	NO	NO
+postgres	test-simple-user	test_db	public	clients	DELETE	NO	NO
+postgres	test-admin-user	test_db	public	orders	INSERT	NO	NO
+postgres	test-admin-user	test_db	public	orders	SELECT	NO	YES
+postgres	test-admin-user	test_db	public	orders	UPDATE	NO	NO
+postgres	test-admin-user	test_db	public	orders	DELETE	NO	NO
+postgres	test-admin-user	test_db	public	orders	TRUNCATE	NO	NO
+postgres	test-admin-user	test_db	public	orders	REFERENCES	NO	NO
+postgres	test-admin-user	test_db	public	orders	TRIGGER	NO	NO
+postgres	test-simple-user	test_db	public	orders	INSERT	NO	NO
+postgres	test-simple-user	test_db	public	orders	SELECT	NO	YES
+postgres	test-simple-user	test_db	public	orders	UPDATE	NO	NO
+postgres	test-simple-user	test_db	public	orders	DELETE	NO	NO
+
+
 
 ```
 
@@ -142,7 +173,13 @@ Foreign-key constraints:
 - вычислите количество записей для каждой таблицы 
 - приведите в ответе:
     - запросы 
-    - результаты их выполнения.
+    - результаты их выполнения.  
+
+
+```
+
+```
+
 
 ## Задача 4
 
