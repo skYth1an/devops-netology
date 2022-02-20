@@ -267,7 +267,13 @@ Seq Scan on clients c  (cost=0.00..14.60 rows=458 width=146)
 
 Приведите список операций, который вы применяли для бэкапа данных и восстановления. 
 
----
+```
+docker exec -t postgres pg_dump -U postgres test_db -f /var/lib/postgresql/data/dump.sql
+
+docker exec -i postgres2 psql -U postgres -d test_db -f /var/lib/postgresql/data/dump.sql
+```
+
+
 
 ```
 sudo docker exec -t 8ca77446794a pg_dump -U postgres mydb -f /var/lib/postgresql/data/backup/mydump.sql
