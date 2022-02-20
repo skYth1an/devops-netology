@@ -177,10 +177,21 @@ postgres	test-simple-user	test_db	public	orders	DELETE	NO	NO
 
 
 ```
+insert into orders (name,price) values ('Шоколад',10),('Принтер',3000),('Книга',500),('Монитор',7000),('Гитара',4000);
+insert into clients  (lastname,country) values ('Иванов Иван Иванович','USA'),('Петров Петр Петрович','Canada'),('Иоганн Себастьян Бах','Japan'),
+('Ронни Джеймс Дио','Russia'),('Ritchie Blackmore','Russia');
+select count(*) from orders;  
+
+select count(*) from clients c ;
 
 ```
+```
+count
+5
 
-
+count
+5
+```
 ## Задача 4
 
 Часть пользователей из таблицы clients решили оформить заказы из таблицы orders.
@@ -197,14 +208,52 @@ postgres	test-simple-user	test_db	public	orders	DELETE	NO	NO
 
 Приведите SQL-запрос для выдачи всех пользователей, которые совершили заказ, а также вывод данного запроса.
  
-Подсказк - используйте директиву `UPDATE`.
+Подсказк - используйте директиву `UPDATE`.  
+
+
+```
+update clients
+set orders = 5
+where id = 3;
+
+update clients
+set orders = 4
+where id = 2;  
+
+update clients
+set orders = 3
+where id = 1;    
+
+select * from clients c where orders is not null;
+
+id	lastname	country	price	orders
+1	Иванов Иван Иванович	USA	[NULL]	3
+2	Петров Петр Петрович	Canada	[NULL]	4
+3	Иоганн Себастьян Бах	Japan	[NULL]	5
+
+  
+
+```
 
 ## Задача 5
 
 Получите полную информацию по выполнению запроса выдачи всех пользователей из задачи 4 
 (используя директиву EXPLAIN).
 
-Приведите получившийся результат и объясните что значат полученные значения.
+Приведите получившийся результат и объясните что значат полученные значения.  
+
+
+```
+explain select * from clients c where orders is not null;  
+QUERY PLAN
+Seq Scan on clients c  (cost=0.00..14.60 rows=458 width=146)
+  Filter: (orders IS NOT NULL)  
+  
+  в выводе указано что чтение строк происходит последовательно,одна за другой
+  cost примерная стоимость запроса,rows - приблизительное значение строк в таблице которое возвращает планировщик запроса,
+  width средний размер строки в байтах
+
+```
 
 ## Задача 6
 
