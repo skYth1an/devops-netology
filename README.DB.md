@@ -17,7 +17,7 @@ version: "3.9"
 services:
   postgres:
     container_name: postgres
-    image: postgres:13.3
+    image: postgres:12
     environment:
       POSTGRES_DB: "mydb"
       POSTGRES_USER: "postgres"
