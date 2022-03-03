@@ -270,12 +270,249 @@ Seq Scan on clients c  (cost=0.00..14.60 rows=458 width=146)
 
 
 ```
-sudo docker exec -t 8ca77446794a pg_dump -U postgres mydb -f /var/lib/postgresql/data/backup/mydump.sql
+sudo docker exec -t 9f5fedcefb53 pg_dump -U postgres test_db -f /var/lib/postgresql/data/backup/mydumpio2.sql
 
-sudo docker exec -i 892e9a5a4ed3 psql -U postgres -d mydb -f /var/lib/postgresql/data/backup/mydump.sql
+
 ```
 
+````
+vagrant@apache-server:/$ cat /opt/db/pgdata/mydumpio.sql 
+--
+-- PostgreSQL database dump
+--
 
+-- Dumped from database version 12.10 (Debian 12.10-1.pgdg110+1)
+-- Dumped by pg_dump version 12.10 (Debian 12.10-1.pgdg110+1)
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET default_tablespace = '';
+
+SET default_table_access_method = heap;
+
+--
+-- Name: clients; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.clients (
+    id integer NOT NULL,
+    lastname character varying(20),
+    country character varying(29),
+    price integer,
+    orders integer
+);
+
+
+ALTER TABLE public.clients OWNER TO postgres;
+
+--
+-- Name: clients_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.clients_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.clients_id_seq OWNER TO postgres;
+
+--
+-- Name: clients_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.clients_id_seq OWNED BY public.clients.id;
+
+
+--
+-- Name: orders; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.orders (
+    id integer NOT NULL,
+    name character varying(20),
+    price integer
+);
+
+
+ALTER TABLE public.orders OWNER TO postgres;
+
+--
+-- Name: orders_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.orders_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.orders_id_seq OWNER TO postgres;
+
+--
+-- Name: orders_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.orders_id_seq OWNED BY public.orders.id;
+
+
+--
+-- Name: clients id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.clients ALTER COLUMN id SET DEFAULT nextval('public.clients_id_seq'::regclass);
+
+
+--
+-- Name: orders id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.orders ALTER COLUMN id SET DEFAULT nextval('public.orders_id_seq'::regclass);
+
+
+--
+-- Data for Name: clients; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.clients (id, lastname, country, price, orders) FROM stdin;
+1	Иванов Иван Иванович	USA	\N	\N
+2	Петров Петр Петрович	Canada	\N	\N
+3	Иоганн Себастьян Бах	Japan	\N	\N
+4	Ронни Джеймс Дио	Russia	\N	\N
+5	Ritchie Blackmore	Russia	\N	\N
+\.
+
+
+--
+-- Data for Name: orders; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.orders (id, name, price) FROM stdin;
+11	Шоколад	10
+12	Принтер	3000
+13	Книга	500
+14	Монитор	7000
+15	Гитара	4000
+\.
+
+
+--
+-- Name: clients_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.clients_id_seq', 5, true);
+
+
+--
+-- Name: orders_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.orders_id_seq', 15, true);
+
+
+--
+-- Name: clients clients_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.clients
+    ADD CONSTRAINT clients_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: orders orders_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.orders
+    ADD CONSTRAINT orders_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: country_idx; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX country_idx ON public.clients USING btree (country);
+
+
+--
+-- Name: clients clients_orders_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.clients
+    ADD CONSTRAINT clients_orders_fkey FOREIGN KEY (orders) REFERENCES public.orders(id);
+
+
+--
+-- PostgreSQL database dump complete
+--
+
+```
+
+````
+sudo docker exec -i 9f7bf330960e  psql -U postgres -d mydb -f /var/lib/postgresql/data/backup/mydumpio2.sql
+
+
+````
+SET
+SET
+SET
+SET
+SET
+ set_config 
+------------
+ 
+(1 row)
+
+SET
+SET
+SET
+SET
+SET
+SET
+CREATE TABLE
+ALTER TABLE
+CREATE SEQUENCE
+ALTER TABLE
+ALTER SEQUENCE
+CREATE TABLE
+ALTER TABLE
+CREATE SEQUENCE
+ALTER TABLE
+ALTER SEQUENCE
+ALTER TABLE
+ALTER TABLE
+COPY 5
+COPY 5
+ setval 
+--------
+      5
+(1 row)
+
+ setval 
+--------
+      5
+(1 row)
+
+ALTER TABLE
+ALTER TABLE
+CREATE INDEX
+ALTER TABLE
+
+````
 
 ### Как cдавать задание
 
