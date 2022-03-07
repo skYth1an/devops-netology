@@ -84,7 +84,19 @@ do instead insert into orders_2 values(new.*);
 
 ````
 При проектировании таблицы можно предусмотреть ее размер в будущем, и если предполагается    что таблица будет очень большой, можно изначально сделать таблицу секционированной( партицированной ) и указать по каким условиям и в какие таблицы будут распределены данные  
+Например  
 
+CREATE TABLE measurement (
+    city_id         int not null,
+    logdate         date not null,
+    peaktemp        int,
+    unitsales       int
+) PARTITION BY RANGE (logdate);
+
+
+
+CREATE TABLE measurement_y2006m02 PARTITION OF measurement
+    FOR VALUES FROM ('2006-02-01') TO ('2006-03-01');
 ````
 
 ## Задача 4
