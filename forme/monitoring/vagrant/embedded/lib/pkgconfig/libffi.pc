@@ -1,0 +1,11 @@
+prefix=/opt/vagrant/embedded
+exec_prefix=${prefix}
+libdir=/opt/vagrant/embedded/lib
+toolexeclibdir=${libdir}/../lib
+includedir=${prefix}/include
+
+Name: libffi
+Description: Library supporting Foreign Function Interfaces
+Version: 3.3
+Libs: -L${toolexeclibdir} -lffi
+Cflags: -I${includedir}

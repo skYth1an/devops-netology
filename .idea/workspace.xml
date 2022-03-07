@@ -2,6 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="78810e65-6a63-4ec4-900d-ecec56a904e4" name="Default Changelist" comment="mycommit">
+      <change afterPath="$PROJECT_DIR$/forme/1.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/forme/Vagrantfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/forme/ansible.cfg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/forme/backup.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/forme/docker-compose.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/forme/hosts2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/forme/igor.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/forme/inventory" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/forme/new.dump" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/forme/test_dump.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -53,8 +63,13 @@
       </RecentBranches>
     </option>
   </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
   <component name="ProjectId" id="20EkhnaPPGiM2t4eijUQR6JBqnD" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -64,7 +79,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="TF_FMT" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../virt-homeworks" />
   </component>
   <component name="RunManager">
     <configuration default="true" type="PythonConfigurationType" factoryName="Python">
@@ -194,7 +209,28 @@
       <option name="project" value="LOCAL" />
       <updated>1636047851449</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="mycommit">
+      <created>1645382675217</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1645382675217</updated>
+    </task>
+    <task id="LOCAL-00005" summary="mycommit">
+      <created>1646637664004</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1646637664004</updated>
+    </task>
+    <task id="LOCAL-00006" summary="mycommit">
+      <created>1646642637112</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1646642637113</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -313,7 +349,6 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="mycommit" />

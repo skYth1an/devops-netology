@@ -1,0 +1,24 @@
+Vagrant.configure(2) do |config|
+  # образ системы Ubuntu 18/04 LTS (Bionic Beaver)
+  config.vm.box = "bento/ubuntu-18.04"
+  # не проверять репозиторий на наличие обновлений
+  config.vm.box_check_update = false
+  # отменить создание ssh-ключа
+  config.ssh.insert_key = false
+
+  # ПЕРВАЯ ВИРТУАЛЬНАЯ МАШИНА
+  config.vm.define "web-server" do |subconfig|
+          # имя виртуальной машины
+    subconfig.vm.provider "virtualbox" do |vb|
+      vb.name = "apache-server"
+      vb.memory=2048
+      vb.cpus=2
+    end
+    # hostname виртуальной машины
+    subconfig.vm.hostname = "apache-server"
+    # настройки сети
+    config.vm.network "forwarded_port", guest: 3306, host: 3306
+    config.vm.network "private_network", ip: "192.168.10.100"
+  end
+
+end
