@@ -1,19 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="78810e65-6a63-4ec4-900d-ecec56a904e4" name="Default Changelist" comment="mycommit">
-      <change afterPath="$PROJECT_DIR$/forme/1.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/forme/Vagrantfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/forme/ansible.cfg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/forme/backup.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/forme/docker-compose.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/forme/hosts2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/forme/igor.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/forme/inventory" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/forme/new.dump" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/forme/test_dump.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="78810e65-6a63-4ec4-900d-ecec56a904e4" name="Default Changelist" comment="mycommit" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -230,7 +218,14 @@
       <option name="project" value="LOCAL" />
       <updated>1646642637113</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="mycommit">
+      <created>1646672306362</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1646672306362</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
