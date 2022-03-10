@@ -43,12 +43,14 @@ shasum -a 512 -c elasticsearch-8.1.0-linux-x86_64.tar.gz.sha512
 RUN tar -xzf elasticsearch-8.1.0-linux-x86_64.tar.gz
 RUN groupadd elasticsearch && useradd elasticsearch -p elasticsearch -g elasticsearch
 RUN mkdir /var/lib/elasticsearch && cd /var/lib/elasticsearch/ && mkdir /elasticsearch-8.1.0/snapshots
-RUN chown -R elasticsearch:elasticsearch /var/lib/elasticsearch/ ; chown -R elasticsearch:elasticsearch /elasticsearch-8.1.0; chown -R elasticsearch:elasticsearch /elasticsearch-8.1.0/snapshots
-COPY ./elasticsearch.yml /etc/elasticsearch/
+RUN chown -R elasticsearch:elasticsearch /var/lib/elasticsearch/ ; chown -R elasticsearch:elasticsearch /elasticsearch-8.1.0; chown -R elasticsearch:elasticsearch /elasticsearch-8.1.0/snapshots; \
+chown -R elasticsearch:elasticsearch /var/lib/; chown -R elasticsearch:elasticsearch /var/log/
+COPY ./elasticsearch.yml /elasticsearch-8.1.0/config/
 USER elasticsearch
 EXPOSE 9200:9200
 EXPOSE 9300:9300
 CMD [ "/elasticsearch-8.1.0/bin/elasticsearch" ]
+
 
 
 ````  
@@ -60,12 +62,12 @@ https://hub.docker.com/repository/docker/skyth1an/myrepo/general
 ````
 
 ````
-root@igor-VirtualBox:~# curl -k --cacert http_ca.crt -u elastic https://localhost:9200/
-Enter host password for user 'elastic':
+
+root@igor-VirtualBox:/home/igor# curl 0.0.0.0:9200/
 {
-  "name" : "03bbb922709e",
-  "cluster_name" : "elasticsearch",
-  "cluster_uuid" : "e_UOHp1DQy-ECZhbtWGozA",
+  "name" : "netology_test",
+  "cluster_name" : "my-cluster",
+  "cluster_uuid" : "_na_",
   "version" : {
     "number" : "8.1.0",
     "build_flavor" : "default",
@@ -219,22 +221,104 @@ root@igor-VirtualBox:~# curl -k --cacert http_ca.crt -u elastic:elastic -X DELET
 Используя API [зарегистрируйте](https://www.elastic.co/guide/en/elasticsearch/reference/current/snapshots-register-repository.html#snapshots-register-repository) 
 данную директорию как `snapshot repository` c именем `netology_backup`.
 
-**Приведите в ответе** запрос API и результат вызова API для создания репозитория.
+**Приведите в ответе** запрос API и результат вызова API для создания репозитория.  
 
-Создайте индекс `test` с 0 реплик и 1 шардом и **приведите в ответе** список индексов.
+
+````
+root@igor-VirtualBox:/home/igor# curl -X PUT "127.0.0.1:9200/_snapshot/netology_backup?pretty" -H 'Content-Type: application/json' -d' { "type": "fs", "settings": { "location": "/elasticsearch-8.1.0/snapshots/" } } '
+{
+  "acknowledged" : true
+}
+
+
+````
+
+Создайте индекс `test` с 0 реплик и 1 шардом и **приведите в ответе** список индексов.  
+
+
+````
+root@igor-VirtualBox:/home/igor# curl http://localhost:9200/test?pretty=true
+{
+  "test" : {
+    "aliases" : { },
+    "mappings" : { },
+    "settings" : {
+      "index" : {
+        "routing" : {
+          "allocation" : {
+            "include" : {
+              "_tier_preference" : "data_content"
+            }
+          }
+        },
+        "number_of_shards" : "1",
+        "provided_name" : "test",
+        "creation_date" : "1646939254078",
+        "number_of_replicas" : "0",
+        "uuid" : "Cn556sZ6TAym3ncBJApFmA",
+        "version" : {
+          "created" : "8010099"
+        }
+      }
+    }
+  }
+}
+
+
+
+````
 
 [Создайте `snapshot`](https://www.elastic.co/guide/en/elasticsearch/reference/current/snapshots-take-snapshot.html) 
 состояния кластера `elasticsearch`.
 
-**Приведите в ответе** список файлов в директории со `snapshot`ами.
+**Приведите в ответе** список файлов в директории со `snapshot`ами.  
 
-Удалите индекс `test` и создайте индекс `test-2`. **Приведите в ответе** список индексов.
+````
+[elasticsearch@0503a1af547c snapshots]$ ll
+total 36
+-rw-r--r-- 1 elasticsearch elasticsearch   846 Mar 10 19:18 index-0
+-rw-r--r-- 1 elasticsearch elasticsearch     8 Mar 10 19:18 index.latest
+drwxr-xr-x 4 elasticsearch elasticsearch  4096 Mar 10 19:18 indices
+-rw-r--r-- 1 elasticsearch elasticsearch 18277 Mar 10 19:18 meta-XCWR3EEWTgOu-a7tOSGU8g.dat
+-rw-r--r-- 1 elasticsearch elasticsearch   356 Mar 10 19:18 snap-XCWR3EEWTgOu-a7tOSGU8g.dat
+
+````
+
+Удалите индекс `test` и создайте индекс `test-2`. **Приведите в ответе** список индексов.  
+
+
+````
+root@igor-VirtualBox:/home/igor# curl http://localhost:9200/_aliases?pretty=true                                     {
+  "test-2" : {
+    "aliases" : { }
+  }
+}
+
+
+````
 
 [Восстановите](https://www.elastic.co/guide/en/elasticsearch/reference/current/snapshots-restore-snapshot.html) состояние
 кластера `elasticsearch` из `snapshot`, созданного ранее. 
 
-**Приведите в ответе** запрос к API восстановления и итоговый список индексов.
+**Приведите в ответе** запрос к API восстановления и итоговый список индексов.  
 
+````
+root@igor-VirtualBox:/home/igor# curl -X POST "localhost:9200/_snapshot/netology_backup/elasticsearch/_restore?pretty" -H 'Content-Type: application/json' -d' { "feature_states": [ "geoip" ] } '
+
+````
+
+````
+root@igor-VirtualBox:/home/igor# curl http://localhost:9200/_aliases?pretty=true
+{
+  "test" : {
+    "aliases" : { }
+  },
+  "test-2" : {
+    "aliases" : { }
+  }
+}
+
+````
 Подсказки:
 - возможно вам понадобится доработать `elasticsearch.yml` в части директивы `path.repo` и перезапустить `elasticsearch`
 
