@@ -8,5 +8,5 @@ variable folder_id {
 }
 variable "yc_token" {
   type = string
-  default = "******"
+  default = ""
 }
