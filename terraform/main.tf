@@ -18,11 +18,22 @@ data "yandex_compute_image" "my_image" {
   family = "ubuntu-1804-lts"
 }
 
+
+locals	{
+  sourse = {
+   stage = 1
+   prod = 2
+ }
+}
+
+
+
 resource "yandex_compute_instance" "default" {
+    count = local.sourse[terraform.workspace]
 
   resources {
-  cores  = 2
-  memory = 2
+   cores  = 2
+   memory = 2
   }
 
   boot_disk {
