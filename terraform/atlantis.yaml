@@ -21,10 +21,10 @@ workflows:
       - init
       - plan:
           extra_args: ["-lock", "false"]
-#    apply:
-#     steps:
-#     - run: echo hi
-#     - apply
+    apply:
+     steps:
+     - run: echo hi
+     - apply
   prod:
     plan:
       steps:
@@ -32,7 +32,7 @@ workflows:
       - plan:
           extra_args: ["-lock", "false"]
       - run: my-custom-command arg1 arg2
-#    apply:
-#      steps:
-#      - run: echo hi
-#      - apply
+    apply:
+      steps:
+      - run: echo hi
+      - apply
