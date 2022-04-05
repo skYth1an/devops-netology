@@ -30,7 +30,17 @@
 1. Надо запускать планирование и аплай для двух воркспейсов `stage` и `prod`.
 1. Необходимо включить автопланирование при изменении любых файлов `*.tf`.
 
-В качестве результата приложите ссылку на файлы `server.yaml` и `atlantis.yaml`.
+В качестве результата приложите ссылку на файлы `server.yaml` и `atlantis.yaml`.  
+
+`````html
+https://github.com/skYth1an/devops-netology/blob/terraform/terraform/server.yaml
+`````
+
+```html
+https://github.com/skYth1an/devops-netology/blob/terraform/terraform/atlantis.yaml
+
+```
+
 
 ## Задача 3. Знакомство с каталогом модулей. 
 
